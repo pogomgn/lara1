@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test/', function () {
-    return view('test');
-});
+//Route::get('/posts/', [PostController::class, 'index']);
+//Route::get('/posts/{id}/', [PostController::class, 'show']);
+Route::resource('posts', PostController::class);
+
+//Route::get('/api/{func}', function ($func) {
+//    return 'function name == ' . $func;
+//});
+//
+//Route::get('/test/', function () {
+//    return 'haha';//view('test');
+//});
+//
+//Route::get('/tratata/', function(){
+//    $url = route('tra');
+//    return 'url ' . $url;
+//})->name('tra');
