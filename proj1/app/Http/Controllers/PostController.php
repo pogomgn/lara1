@@ -85,4 +85,22 @@ class PostController extends Controller
     {
         //
     }
+
+    public function add($id=0)
+    {
+        return view('addpost', ['id' => $id]); // or
+//        return view('addpost')->with('id', $id);
+    }
+
+    public function app1()
+    {
+        $langs = [
+            'ru',
+            'en',
+            'fr',
+        ];
+        return view('app1', [
+            'lang' => $langs,
+        ]);
+    }
 }
