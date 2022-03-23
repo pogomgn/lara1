@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,14 @@ Route::get('/', function () {
 //Route::resource('posts', PostController::class);
 //Route::get('/posts/add/', [PostController::class, 'add']);
 Route::get('/posts/add/{id}', [PostController::class, 'add']);
+Route::get('/posts/list/', [PostController::class, 'list']);
 Route::get('/app1/', [PostController::class, 'app1']);
+
+
+Route::get('/article/', [ArticleController::class, 'list']);
+Route::get('/article/titlefind/{title}', [ArticleController::class, 'getByTitle']);
+Route::get('/article/{id}', [ArticleController::class, 'getById'])->name('view_article_by_id');
+Route::get('/article/add/{title}/{content}', [ArticleController::class, 'add']);
 
 //Route::get('/api/{func}', function ($func) {
 //    return 'function name == ' . $func;
