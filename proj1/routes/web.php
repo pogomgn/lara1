@@ -29,9 +29,15 @@ Route::get('/app1/', [PostController::class, 'app1']);
 
 
 Route::get('/article/', [ArticleController::class, 'list']);
+Route::get('/article/trash', [ArticleController::class, 'trashList']);
 Route::get('/article/titlefind/{title}', [ArticleController::class, 'getByTitle']);
 Route::get('/article/{id}', [ArticleController::class, 'getById'])->name('view_article_by_id');
 Route::get('/article/add/{title}/{content}', [ArticleController::class, 'add']);
+Route::get('/article/delete/{id}', [ArticleController::class, 'deleteById']);
+Route::get('/article/softdelete/{id}', [ArticleController::class, 'softDeleteById']);
+
+Route::get('/intros/', [ArticleController::class, 'getIntros']);
+
 
 //Route::get('/api/{func}', function ($func) {
 //    return 'function name == ' . $func;
