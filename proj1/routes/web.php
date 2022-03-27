@@ -36,7 +36,8 @@ Route::get('/article/add/{title}/{content}', [ArticleController::class, 'add']);
 Route::get('/article/delete/{id}', [ArticleController::class, 'deleteById']);
 Route::get('/article/softdelete/{id}', [ArticleController::class, 'softDeleteById']);
 
-Route::get('/intros/', [ArticleController::class, 'getIntros']);
+Route::get('/intro/', [ArticleController::class, 'getIntros']);
+Route::get('/author/', [ArticleController::class, 'getAuthors']);
 
 
 //Route::get('/api/{func}', function ($func) {

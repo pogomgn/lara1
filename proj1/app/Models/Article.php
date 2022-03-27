@@ -28,4 +28,9 @@ class Article extends Model
     {
         return $this->hasMany(Attachment::class);
     }
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class);
+    }
 }

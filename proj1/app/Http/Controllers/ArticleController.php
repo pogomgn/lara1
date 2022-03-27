@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Author;
 use App\Models\Intro;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -75,6 +77,21 @@ class ArticleController extends Controller
         foreach ($intros as $intro) {
             $res .= 'desc: ' . $intro->description . ' article: ' . ($intro->article ? $intro->article->title : '') . '<br>';
         }
+        return $res;
+    }
+
+    public function getAuthors()
+    {
+        $res = '<pre>authors: <br>';
+        $arts = (new Author)->where('id', '>', 0)->get();
+//        $arts = Article::withTrashed()->where('id', '>', 0)->get();
+        foreach ($arts as $author) {
+            $res .= $author->id . $author->name . '<br>';
+            foreach ($author->articles as $article) {
+                $res .= "\t" . $article->title . '<br>';
+            }
+        }
+        $res .= '</pre>';
         return $res;
     }
 }
