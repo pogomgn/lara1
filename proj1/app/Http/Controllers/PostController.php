@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return 'haha';
+        $posts = Post::all();
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -25,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return 'create';
+        return view('posts.create');
     }
 
     /**
@@ -36,7 +38,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fields = array_merge(['author_id' => 1], $request->all());
+//        unset($fields['_token']);
+//        return var_export($fields, true);
+//        !$fields['author_id'] && $fields['author_id'] = 1;
+//        var_export($fields);
+        Post::create($fields);
+//        return $request->all();
+        return redirect('/posts');
     }
 
     /**
@@ -47,10 +56,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $r = new Response();
-        $r->setStatusCode(500);
-        return $r;
-        return 'id: ' . $id;
+        $post = (new \App\Models\Post)->where('id', $id)->first();
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -61,7 +68,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = (new \App\Models\Post)->where('id', $id)->first();
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -73,7 +81,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fields = $request->all();
+        $post = (new \App\Models\Post)->where('id', $id)->first();
+        $post->update($fields);
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -84,7 +95,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = (new \App\Models\Post)->where('id', $id)->first();
+        $post->delete();
+        return redirect(route('posts.index'));
     }
 
     public function add($id = 0)

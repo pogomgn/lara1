@@ -21,10 +21,10 @@ Route::get('/', function () {
 
 //Route::get('/posts/', [PostController::class, 'index']);
 //Route::get('/posts/{id}/', [PostController::class, 'show']);
-//Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class);
 //Route::get('/posts/add/', [PostController::class, 'add']);
-Route::get('/posts/add/{id}', [PostController::class, 'add']);
-Route::get('/posts/list/', [PostController::class, 'list']);
+//Route::get('/posts/add/{id}', [PostController::class, 'add']);
+//Route::get('/posts/list/', [PostController::class, 'list']);
 Route::get('/app1/', [PostController::class, 'app1']);
 
 
