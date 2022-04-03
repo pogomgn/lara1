@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,17 @@ Route::get('/article/softdelete/{id}', [ArticleController::class, 'softDeleteByI
 
 Route::get('/intro/', [ArticleController::class, 'getIntros']);
 Route::get('/author/', [ArticleController::class, 'getAuthors']);
+Route::get('/dates/', function () {
+    $date1 = new DateTime();
+    $date1->modify('+30 minutes');
+    echo $date1->format('d.m.Y H:i:s') . '<br>';
 
+    echo var_export(Carbon::now(), true);
+
+    return '';
+});
+
+Route::get('/test/test1', [TestController::class, 'testAccessor']);
 
 //Route::get('/api/{func}', function ($func) {
 //    return 'function name == ' . $func;

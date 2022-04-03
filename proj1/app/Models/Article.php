@@ -33,4 +33,27 @@ class Article extends Model
     {
         return $this->belongsToMany(Author::class);
     }
+
+    public function getTitleAttribute($value)
+    {
+        /** Accessor test ! */
+        return $value . '!';
+    }
+
+    public function setTitleAttribute($value)
+    {
+        /**
+         * Mutator test !
+         * manipulate data before sending to DB
+         */
+        return $value;
+    }
+
+    public static function scopeTestiiing($query)
+    {
+        /**
+         * scope test
+         */
+        return $query->orderBy('id', 'desc')->get();
+    }
 }

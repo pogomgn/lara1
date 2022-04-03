@@ -58,7 +58,8 @@ class ArticleController extends Controller
     public function list()
     {
         $res = '<pre>articles: <br>';
-        $arts = (new Article)->where('id', '>', 0)->get();
+        $arts = Article::Testiiing();
+//        $arts = (new Article)->where('id', '>', 0)->get();
 //        $arts = Article::withTrashed()->where('id', '>', 0)->get();
         foreach ($arts as $article) {
             $res .= $article->id . ' <a href="' . route('view_article_by_id', ['id' => $article->id]) . '">' . $article->title . '</a> intro: ' . ($article->intro ? $article->intro->description : '') . '<br>';
